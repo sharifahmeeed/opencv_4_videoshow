@@ -10,6 +10,7 @@ def decode(im):
     # Find barcodes and QR codes
     decodedObjects = pyzbar.decode(frame)
 
+
     # Print results
     for obj in decodedObjects:
         print('Type : ', obj.type)
