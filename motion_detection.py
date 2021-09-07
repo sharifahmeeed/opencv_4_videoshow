@@ -7,6 +7,8 @@ from beepy import beep
 import time
 from tkinter import *
 from tkinter import messagebox
+from playsound import playsound #pip install playsound==1.2.2 #for the error minimization
+
 
 
 cap = cv2.VideoCapture(0) #cv2.VideoCapture('vtest.avi')
@@ -25,29 +27,15 @@ while cap.isOpened():
     for contour in contours:
         (x, y, w, h) = cv2.boundingRect(contour)
 
-        if cv2.contourArea(contour) < 900:
+        if cv2.contourArea(contour) < 1200:
             continue
         cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 2)
         cv2.putText(frame1, "status: {}".format('Virus Detected'),(10, 20), cv2.FONT_HERSHEY_SIMPLEX,
                     1, (0, 0, 255), 3)
-        print("alarm")
-        print(" __")
-        #beep(sound=4)
+        playsound('note.mp3')
 
         #beep(sound=4)
-        #tkinter.messagebox.showwarning(title="Warning", message="Error",)
 
-        # root = Tk()
-        # root.title('Error WINDOW')
-        # Label(root,text='Error Occurred').grid()
-        #
-        #
-        # topWindow = Toplevel(root)
-        # topWindow.title('System Error')
-        # Label(topWindow,text='Error! Please restart').grid()
-        # Button(topWindow, text='[press!]', command=lambda: messagebox.showinfo('foo', 'restart!')).grid()
-        #beep(sound=4)
-        #root.mainloop()
         #cv2.drawContours(frame1, contours, -1, (0, 255, 0), 2)
 
     cv2.imshow("feed", frame1)
